@@ -18,7 +18,7 @@ function initPrelude() {
 
     backgroundSong.muted = muted;
     musicToggle.textContent = muted ? "Unmute Music" : "Mute Music";
-    musicToggle.setAttribute("aria-pressed", String(muted));
+    musicToggle.setAttribute("aria-pressed", String(!muted));
     body.classList.toggle("music-muted", muted);
   };
 
