@@ -11,220 +11,282 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Lato:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="experience" aria-live="polite">
-      <div class="experience-track" id="experienceTrack">
-      <section class="scene scene-hero is-active" id="scene-hero" data-scene="hero">
-        <div class="scene-backdrop floral-overlay" aria-hidden="true"></div>
-        <div class="scene-card hero-card">
-          <p class="eyebrow">Wedding Invitation</p>
-          <h1>Sarin Xavier <span>&amp;</span> Dr. Athira Elizabeth Paul</h1>
-          <p class="hero-date">15 April 2026</p>
-          <p class="hero-tagline">
-            Together with their families, invite you to celebrate their wedding
-          </p>
-          <p class="gesture-hint">Scroll, swipe, or use arrow keys to move through the invitation</p>
+    <section class="hero">
+      <div class="watercolor-patch top-left" aria-hidden="true"></div>
+      <div class="watercolor-patch top-right" aria-hidden="true"></div>
+      <div class="watercolor-patch bottom-left" aria-hidden="true"></div>
+      <div class="watercolor-patch bottom-right" aria-hidden="true"></div>
+
+      <div class="kintsugi-cracks" aria-hidden="true">
+        <svg viewBox="0 0 1000 1400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4af37" stop-opacity="0.55" />
+              <stop offset="50%" stop-color="#f0d96b" stop-opacity="0.82" />
+              <stop offset="100%" stop-color="#c5a028" stop-opacity="0.58" />
+            </linearGradient>
+            <linearGradient id="goldGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#e2cc6e" stop-opacity="0.55" />
+              <stop offset="50%" stop-color="#d4af37" stop-opacity="0.72" />
+              <stop offset="100%" stop-color="#f0d96b" stop-opacity="0.54" />
+            </linearGradient>
+          </defs>
+          <path
+            class="shimmer-path"
+            d="M 0 130 Q 90 160 155 112 Q 215 80 300 140"
+            stroke="url(#goldGrad1)"
+            stroke-width="2.5"
+            fill="none"
+          />
+          <path
+            d="M 1000 90 Q 925 115 860 72 Q 805 40 735 100"
+            stroke="url(#goldGrad2)"
+            stroke-width="2.5"
+            fill="none"
+          />
+          <path
+            class="shimmer-path"
+            d="M 0 1180 Q 65 1165 130 1210 Q 190 1250 255 1215"
+            stroke="url(#goldGrad1)"
+            stroke-width="2.2"
+            fill="none"
+          />
+          <path
+            d="M 1000 1240 Q 930 1220 865 1260 Q 805 1290 740 1258"
+            stroke="url(#goldGrad2)"
+            stroke-width="2.2"
+            fill="none"
+          />
+          <path
+            d="M 120 0 Q 165 80 130 150 Q 105 205 140 260"
+            stroke="url(#goldGrad2)"
+            stroke-width="1.7"
+            fill="none"
+            opacity="0.55"
+          />
+          <path
+            d="M 880 0 Q 835 90 870 155 Q 892 198 860 250"
+            stroke="url(#goldGrad1)"
+            stroke-width="1.7"
+            fill="none"
+            opacity="0.55"
+          />
+        </svg>
+      </div>
+
+      <div class="gold-wreath" aria-hidden="true">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wreathGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4af37" stop-opacity="0.8" />
+              <stop offset="50%" stop-color="#f0d96b" stop-opacity="1" />
+              <stop offset="100%" stop-color="#c5a028" stop-opacity="0.82" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="250" cy="250" rx="220" ry="230" stroke="url(#wreathGold)" stroke-width="1.5" fill="none" opacity="0.48" />
+          <ellipse
+            cx="250"
+            cy="250"
+            rx="214"
+            ry="224"
+            stroke="url(#wreathGold)"
+            stroke-width="0.8"
+            fill="none"
+            opacity="0.3"
+            stroke-dasharray="8 12 20 8"
+          />
+        </svg>
+      </div>
+
+      <div class="hero-content">
+        <div class="cross-icon" aria-hidden="true">
+          <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="0" width="8" height="55" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+            <rect x="4" y="12" width="32" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
+          </svg>
         </div>
-      </section>
 
-      <section class="scene" id="scene-countdown" data-scene="countdown">
-        <div class="scene-card">
-          <div class="section-heading">
-            <p class="section-kicker">Counting Down</p>
-            <h2>Until the celebration begins</h2>
+        <p class="verse">"We love because He first loved us."</p>
+        <p class="verse-ref">1 John 4:19</p>
+
+        <div class="hero-ornament"></div>
+
+        <p class="salutation">With joyful hearts,</p>
+
+        <p class="invite-text">
+          Together with their families,<br />
+          Sarin Xavier and Dr. Athira Elizabeth Paul<br />
+          request the honor of your prayers and presence<br />
+          as they enter the Sacrament of Holy Matrimony.
+        </p>
+
+        <div class="couple-section">
+          <p class="couple-names">Sarin Xavier</p>
+          <p class="couple-parents">Son of Mr. A. C. Xavier &amp; Mrs. Jolly Xavier, Vyttila, Kochi</p>
+          <p class="couple-names">Dr. Athira Elizabeth Paul</p>
+          <p class="couple-parents">Daughter of Mr. P. V. Paul &amp; Mrs. Reetha Paul, Ettumannoor, Kottayam</p>
+        </div>
+
+        <div class="hero-ornament"></div>
+
+        <div class="event-details-inline">
+          <p class="event-label">Engagement</p>
+          <p class="event-info">9 April 2026 at 5:00 PM</p>
+          <p class="event-info">Muttuchira</p>
+
+          <p class="event-label">Holy Matrimony</p>
+          <p class="event-info">15 April 2026 at 3:30 PM</p>
+          <p class="event-info">Navanazreth Church, Kumarakom</p>
+        </div>
+
+        <div class="hero-ornament"></div>
+
+        <p class="latin-phrase">Ad Majorem Dei Gloriam</p>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <section class="message">
+      <div class="container">
+        <p class="message-text">
+          The wedding ceremony will be solemnized at Navanazreth Church, Kumarakom,
+          and the evening will continue with a reception at Backwater Ripples.
+        </p>
+        <div class="section-divider"></div>
+        <p class="message-text">
+          Your presence, blessings, and prayers will be a cherished gift
+          as they begin their life together in grace and love.
+        </p>
+      </div>
+    </section>
+
+    <section class="details">
+      <div class="container">
+        <h2 class="section-title">Wedding Details</h2>
+        <div class="section-divider"></div>
+        <div class="details-grid">
+          <article class="detail-card">
+            <div class="icon" aria-hidden="true">✝</div>
+            <h3>Holy Matrimony</h3>
+            <p>Navanazreth Church</p>
+            <p>Kumarakom</p>
+            <p class="time">15 April 2026, 3:30 PM</p>
+          </article>
+          <article class="detail-card">
+            <div class="icon" aria-hidden="true">♥</div>
+            <h3>Reception</h3>
+            <p>Backwater Ripples</p>
+            <p>Kumarakom</p>
+            <p class="time">15 April 2026, 5:30 PM</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="section-title">Cherished Moments</h2>
+        <div class="section-divider"></div>
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item" data-full="images/gallery-1.svg" aria-label="Open gallery image 1">
+            <img src="images/gallery-1.svg" alt="Decorative placeholder image for the couple gallery" loading="lazy" />
+          </button>
+          <button type="button" class="gallery-item" data-full="images/gallery-2.svg" aria-label="Open gallery image 2">
+            <img src="images/gallery-2.svg" alt="Decorative placeholder image for the wedding gallery" loading="lazy" />
+          </button>
+          <button type="button" class="gallery-item" data-full="images/gallery-3.svg" aria-label="Open gallery image 3">
+            <img src="images/gallery-3.svg" alt="Decorative placeholder image for engagement memories" loading="lazy" />
+          </button>
+          <button type="button" class="gallery-item" data-full="images/gallery-4.svg" aria-label="Open gallery image 4">
+            <img src="images/gallery-4.svg" alt="Decorative placeholder image for celebration portraits" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="countdown-section">
+      <div class="container">
+        <h2 class="section-title">Counting Down With Joy</h2>
+        <div class="section-divider"></div>
+        <div class="countdown-wrapper" aria-live="polite">
+          <div class="countdown-block">
+            <div class="countdown-number" id="cd-days">00</div>
+            <div class="countdown-label">Days</div>
           </div>
-          <div class="countdown-grid" aria-live="polite">
-            <article class="countdown-card">
-              <span class="countdown-value" id="days">00</span>
-              <span class="countdown-label">Days</span>
-            </article>
-            <article class="countdown-card">
-              <span class="countdown-value" id="hours">00</span>
-              <span class="countdown-label">Hours</span>
-            </article>
-            <article class="countdown-card">
-              <span class="countdown-value" id="minutes">00</span>
-              <span class="countdown-label">Minutes</span>
-            </article>
-            <article class="countdown-card">
-              <span class="countdown-value" id="seconds">00</span>
-              <span class="countdown-label">Seconds</span>
-            </article>
+          <div class="countdown-block">
+            <div class="countdown-number" id="cd-hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-block">
+            <div class="countdown-number" id="cd-minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-block">
+            <div class="countdown-number" id="cd-seconds">00</div>
+            <div class="countdown-label">Seconds</div>
           </div>
         </div>
-      </section>
+        <p class="countdown-event-label">Until the Holy Matrimony on 15 April 2026</p>
+      </div>
+    </section>
 
-      <section class="scene" id="scene-couple" data-scene="couple">
-        <div class="scene-card">
-          <div class="section-heading">
-            <p class="section-kicker">The Couple</p>
-            <h2>With joy in their hearts</h2>
-          </div>
-          <div class="couple-grid">
-            <article class="profile-card">
-              <div class="profile-image-wrap">
-                <!-- Replace this placeholder with the groom's portrait inside /images when ready. -->
-                <img
-                  src="images/groom-placeholder.svg"
-                  alt="Placeholder portrait for Sarin Xavier"
-                  class="profile-image"
-                />
-              </div>
-              <div class="profile-copy">
-                <p class="profile-role">Groom</p>
-                <h3>Sarin Xavier</h3>
-                <p>Mr. A. C. Xavier &amp; Mrs. Jolly Xavier</p>
-                <p>Vyttila, Kochi</p>
-              </div>
-            </article>
+    <section class="location">
+      <div class="container">
+        <h2 class="section-title">Locations</h2>
+        <div class="section-divider"></div>
 
-            <article class="profile-card">
-              <div class="profile-image-wrap">
-                <!-- Replace this placeholder with the bride's portrait inside /images when ready. -->
-                <img
-                  src="images/bride-placeholder.svg"
-                  alt="Placeholder portrait for Dr. Athira Elizabeth Paul"
-                  class="profile-image"
-                />
-              </div>
-              <div class="profile-copy">
-                <p class="profile-role">Bride</p>
-                <h3>Dr. Athira Elizabeth Paul</h3>
-                <p>Mr. P. V. Paul &amp; Mrs. Reetha Paul</p>
-                <p>Ettumannoor, Kottayam</p>
-              </div>
-            </article>
-          </div>
+        <div class="location-grid">
+          <article class="location-card">
+            <p class="location-kicker">Wedding Ceremony</p>
+            <p class="location-venue">Navanazreth Church, Kumarakom</p>
+            <p class="location-address">Kumarakom, Kottayam, Kerala, India</p>
+            <div class="map-frame">
+              <iframe
+                title="Map showing Navanazreth Church, Kumarakom"
+                src="https://www.google.com/maps?q=Navanazreth%20Church%2C%20Kumarakom&z=15&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
+
+          <article class="location-card">
+            <p class="location-kicker">Reception</p>
+            <p class="location-venue">Backwater Ripples, Kumarakom</p>
+            <p class="location-address">Kumarakom, Kottayam, Kerala, India</p>
+            <div class="map-frame">
+              <iframe
+                title="Map showing Backwater Ripples, Kumarakom"
+                src="https://www.google.com/maps?q=Backwater%20Ripples%2C%20Kumarakom&z=15&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="scene" id="scene-quote" data-scene="quote">
-        <div class="scene-card quote-card">
-          <p class="quote-text">"I have found the one whom my soul loves."</p>
-          <p class="quote-text malayalam">എൻ ആത്മാവ് സ്നേഹിക്കുന്നവനെ ഞാൻ കണ്ടെത്തി</p>
-        </div>
-      </section>
-
-      <section class="scene" id="scene-engagement" data-scene="engagement">
-        <div class="scene-card event-scene-card">
-          <p class="section-kicker">Celebration Timeline</p>
-          <div class="event-emblem" aria-hidden="true"></div>
-          <p class="timeline-type">Engagement (Betrothal)</p>
-          <h2>9 April 2026</h2>
-          <p class="event-meta">5:00 PM</p>
-          <p class="event-location">Muttuchira</p>
-        </div>
-      </section>
-
-      <section class="scene" id="scene-wedding" data-scene="wedding">
-        <div class="scene-card event-scene-card">
-          <p class="section-kicker">Sacred Celebration</p>
-          <div class="event-emblem" aria-hidden="true"></div>
-          <p class="timeline-type">Wedding Ceremony</p>
-          <h2>15 April 2026</h2>
-          <p class="event-meta">3:30 PM</p>
-          <p class="event-location">Navanazreth Church, Kumarakom</p>
-        </div>
-      </section>
-
-      <section class="scene" id="scene-reception" data-scene="reception">
-        <div class="scene-card event-scene-card">
-          <p class="section-kicker">An Evening Together</p>
-          <div class="event-emblem" aria-hidden="true"></div>
-          <p class="timeline-type">Reception</p>
-          <h2>15 April 2026</h2>
-          <p class="event-meta">5:30 PM</p>
-          <p class="event-location">Backwater Ripples, Kumarakom</p>
-        </div>
-      </section>
-
-      <section class="scene" id="scene-gallery" data-scene="gallery">
-        <div class="scene-card">
-          <div class="section-heading">
-            <p class="section-kicker">Gallery</p>
-            <h2>Memories in bloom</h2>
-          </div>
-          <div class="gallery-grid">
-            <!-- Replace these placeholders with optimized wedding photos inside /images. -->
-            <button type="button" class="gallery-item" data-full="images/gallery-1.svg" aria-label="Open gallery image 1">
-              <img src="images/gallery-1.svg" alt="Floral placeholder image 1" loading="lazy" />
-            </button>
-            <button type="button" class="gallery-item" data-full="images/gallery-2.svg" aria-label="Open gallery image 2">
-              <img src="images/gallery-2.svg" alt="Floral placeholder image 2" loading="lazy" />
-            </button>
-            <button type="button" class="gallery-item" data-full="images/gallery-3.svg" aria-label="Open gallery image 3">
-              <img src="images/gallery-3.svg" alt="Floral placeholder image 3" loading="lazy" />
-            </button>
-            <button type="button" class="gallery-item" data-full="images/gallery-4.svg" aria-label="Open gallery image 4">
-              <img src="images/gallery-4.svg" alt="Floral placeholder image 4" loading="lazy" />
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section class="scene" id="scene-locations" data-scene="locations">
-        <div class="scene-card">
-          <div class="section-heading">
-            <p class="section-kicker">Locations</p>
-            <h2>Join us at these beautiful venues</h2>
-          </div>
-          <div class="map-grid">
-            <article class="map-card">
-              <div class="map-copy">
-                <h3>Wedding Ceremony</h3>
-                <p>Navanazreth Church, Kumarakom</p>
-              </div>
-              <div class="map-embed">
-                <!-- Customization point: replace the Google Maps embed URL if you need a different view or place pin. -->
-                <iframe
-                  title="Map showing Navanazreth Church, Kumarakom"
-                  src="https://www.google.com/maps?q=Navanazreth%20Church%2C%20Kumarakom&z=15&output=embed"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-            </article>
-
-            <article class="map-card">
-              <div class="map-copy">
-                <h3>Reception</h3>
-                <p>Backwater Ripples, Kumarakom</p>
-              </div>
-              <div class="map-embed">
-                <!-- Customization point: replace the Google Maps embed URL if you need a different view or place pin. -->
-                <iframe
-                  title="Map showing Backwater Ripples, Kumarakom"
-                  src="https://www.google.com/maps?q=Backwater%20Ripples%2C%20Kumarakom&z=15&output=embed"
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="scene" id="scene-contact" data-scene="contact">
-        <div class="scene-card contact-card">
-          <div class="section-heading section-heading-compact">
-            <p class="section-kicker">Contact</p>
-            <h2>For assistance and warm wishes</h2>
-          </div>
-          <div class="contact-details">
-            <p class="contact-name">Dr. Sachin &amp; Dr. Maria</p>
-            <a class="contact-phone" href="tel:+919847083061">9847083061</a>
-          </div>
-          <a
-            class="button button-whatsapp"
-            href="https://wa.me/919847083061"
-            target="_blank"
-            rel="noreferrer"
-          >
+    <section class="footer-message">
+      <div class="container">
+        <h2 class="section-title">Blessings &amp; Contact</h2>
+        <div class="section-divider"></div>
+        <p class="message-text footer-blessing">
+          For assistance, wishes, and family coordination, please reach out below.
+        </p>
+        <div class="contact-panel">
+          <p class="contact-name">Dr. Sachin &amp; Dr. Maria</p>
+          <a class="contact-phone" href="tel:+919847083061">+91 98470 83061</a>
+          <a class="button button-whatsapp" href="https://wa.me/919847083061" target="_blank" rel="noreferrer">
             <span class="whatsapp-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
                 <path
@@ -235,21 +297,16 @@
             </span>
             Message us on WhatsApp
           </a>
-          <footer class="scene-footer">
-            <p class="footer-names">Sarin Xavier &amp; Dr. Athira Elizabeth Paul</p>
-            <p>15 April 2026</p>
-            <p>We look forward to celebrating with you</p>
-          </footer>
         </div>
-      </section>
       </div>
-    </main>
+    </section>
 
-    <div class="scene-progress" aria-hidden="true">
-      <span class="scene-progress-current" id="sceneCurrent">01</span>
-      <span class="scene-progress-divider"></span>
-      <span class="scene-progress-total" id="sceneTotal">09</span>
-    </div>
+    <footer>
+      <p class="latin">Ad Majorem Dei Gloriam</p>
+      <p>Sarin Xavier &amp; Dr. Athira Elizabeth Paul</p>
+      <p>15 April 2026</p>
+      <p>We look forward to celebrating with you</p>
+    </footer>
 
     <div class="lightbox" id="lightbox" aria-hidden="true" aria-modal="true" role="dialog" aria-label="Photo gallery lightbox">
       <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close gallery">&times;</button>
