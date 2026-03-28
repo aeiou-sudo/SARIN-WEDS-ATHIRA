@@ -16,7 +16,24 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="has-prelude">
+    <div class="invitation-prelude" id="invitationPrelude" role="dialog" aria-modal="true" aria-labelledby="preludeTitle">
+      <div class="invitation-prelude-card">
+        <p class="prelude-kicker">Wedding Invitation</p>
+        <div class="prelude-ornament" aria-hidden="true"></div>
+        <p class="prelude-script">With Love &amp; Grace</p>
+        <h1 class="prelude-title" id="preludeTitle">Sarin Xavier &amp; Dr. Athira Elizabeth Paul</h1>
+        <p class="prelude-date">15 April 2026</p>
+        <p class="prelude-copy">
+          Together with their families, invite you to witness and bless
+          the beginning of their married life.
+        </p>
+        <button type="button" class="prelude-button" id="openInvitation">
+          Open Invitation
+        </button>
+      </div>
+    </div>
+
     <section class="hero">
       <div class="watercolor-patch top-left" aria-hidden="true"></div>
       <div class="watercolor-patch top-right" aria-hidden="true"></div>
@@ -104,38 +121,38 @@
         </svg>
       </div>
 
-      <div class="hero-content">
-        <div class="cross-icon" aria-hidden="true">
+      <div class="hero-content reveal-sequence">
+        <div class="cross-icon reveal-item" aria-hidden="true">
           <svg viewBox="0 0 40 55" xmlns="http://www.w3.org/2000/svg">
             <rect x="16" y="0" width="8" height="55" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
             <rect x="4" y="12" width="32" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.5" />
           </svg>
         </div>
 
-        <p class="verse">"We love because He first loved us."</p>
-        <p class="verse-ref">1 John 4:19</p>
+        <p class="verse reveal-item">"We love because He first loved us."</p>
+        <p class="verse-ref reveal-item">1 John 4:19</p>
 
-        <div class="hero-ornament"></div>
+        <div class="hero-ornament reveal-item"></div>
 
-        <p class="salutation">With joyful hearts,</p>
+        <p class="salutation reveal-item">With joyful hearts,</p>
 
-        <p class="invite-text">
+        <p class="invite-text reveal-item">
           Together with their families,<br />
           Sarin Xavier and Dr. Athira Elizabeth Paul<br />
           request the honor of your prayers and presence<br />
           as they enter the Sacrament of Holy Matrimony.
         </p>
 
-        <div class="couple-section">
+        <div class="couple-section reveal-item">
           <p class="couple-names">Sarin Xavier</p>
           <p class="couple-parents">Son of Mr. A. C. Xavier &amp; Mrs. Jolly Xavier, Vyttila, Kochi</p>
           <p class="couple-names">Dr. Athira Elizabeth Paul</p>
           <p class="couple-parents">Daughter of Mr. P. V. Paul &amp; Mrs. Reetha Paul, Ettumannoor, Kottayam</p>
         </div>
 
-        <div class="hero-ornament"></div>
+        <div class="hero-ornament reveal-item"></div>
 
-        <div class="event-details-inline">
+        <div class="event-details-inline reveal-item">
           <p class="event-label">Engagement</p>
           <p class="event-info">9 April 2026 at 5:00 PM</p>
           <p class="event-info">Muttuchira</p>
@@ -145,9 +162,9 @@
           <p class="event-info">Navanazreth Church, Kumarakom</p>
         </div>
 
-        <div class="hero-ornament"></div>
+        <div class="hero-ornament reveal-item"></div>
 
-        <p class="latin-phrase">Ad Majorem Dei Gloriam</p>
+        <p class="latin-phrase reveal-item">Ad Majorem Dei Gloriam</p>
       </div>
 
       <div class="scroll-indicator" aria-hidden="true">
@@ -155,7 +172,7 @@
       </div>
     </section>
 
-    <section class="message">
+    <section class="message reveal-on-scroll">
       <div class="container">
         <p class="message-text">
           The wedding ceremony will be solemnized at Navanazreth Church, Kumarakom,
@@ -169,7 +186,7 @@
       </div>
     </section>
 
-    <section class="details">
+    <section class="details reveal-on-scroll">
       <div class="container">
         <h2 class="section-title">Wedding Details</h2>
         <div class="section-divider"></div>
@@ -192,7 +209,7 @@
       </div>
     </section>
 
-    <section class="gallery-section">
+    <section class="gallery-section reveal-on-scroll">
       <div class="container">
         <h2 class="section-title">Cherished Moments</h2>
         <div class="section-divider"></div>
@@ -213,7 +230,7 @@
       </div>
     </section>
 
-    <section class="countdown-section">
+    <section class="countdown-section reveal-on-scroll">
       <div class="container">
         <h2 class="section-title">Counting Down With Joy</h2>
         <div class="section-divider"></div>
@@ -239,7 +256,7 @@
       </div>
     </section>
 
-    <section class="location">
+    <section class="location reveal-on-scroll">
       <div class="container">
         <h2 class="section-title">Locations</h2>
         <div class="section-divider"></div>
@@ -276,7 +293,7 @@
       </div>
     </section>
 
-    <section class="footer-message">
+    <section class="footer-message reveal-on-scroll">
       <div class="container">
         <h2 class="section-title">Blessings &amp; Contact</h2>
         <div class="section-divider"></div>

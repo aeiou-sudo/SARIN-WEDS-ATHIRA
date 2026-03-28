@@ -1,5 +1,37 @@
 const weddingDate = new Date("2026-04-15T15:30:00+05:30").getTime();
 
+function initPrelude() {
+  const body = document.body;
+  const prelude = document.getElementById("invitationPrelude");
+  const openButton = document.getElementById("openInvitation");
+
+  if (!body || !prelude || !openButton) {
+    return;
+  }
+
+  const revealInvitation = () => {
+    prelude.classList.add("is-hidden");
+    body.classList.remove("has-prelude");
+    body.classList.add("page-revealed");
+
+    window.setTimeout(() => {
+      prelude.setAttribute("aria-hidden", "true");
+    }, 850);
+  };
+
+  openButton.addEventListener("click", revealInvitation);
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      body.classList.contains("has-prelude") &&
+      (event.key === "Enter" || event.key === " ")
+    ) {
+      event.preventDefault();
+      revealInvitation();
+    }
+  });
+}
+
 function padNumber(value) {
   return String(value).padStart(2, "0");
 }
@@ -82,5 +114,33 @@ function initLightbox() {
   });
 }
 
+function initScrollReveal() {
+  const sections = document.querySelectorAll(".reveal-on-scroll");
+
+  if (!sections.length || !("IntersectionObserver" in window)) {
+    sections.forEach((section) => section.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -8% 0px",
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+initPrelude();
 updateCountdown();
 initLightbox();
+initScrollReveal();
