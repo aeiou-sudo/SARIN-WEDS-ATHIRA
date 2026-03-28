@@ -162,18 +162,35 @@ section {
   top: 1.1rem;
   right: 1.1rem;
   z-index: 35;
-  min-height: 2.9rem;
-  padding: 0.8rem 1.1rem;
-  border-radius: 999px;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
   border: 1px solid rgba(197, 160, 40, 0.32);
   background: rgba(255, 251, 244, 0.88);
   box-shadow: 0 14px 28px rgba(74, 60, 36, 0.1);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 0.98rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--gold-dark);
   transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+
+.music-toggle-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.music-toggle-icon svg {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.music-toggle-icon-off {
+  opacity: 0;
+  transform: scale(0.82);
 }
 
 .music-toggle:hover,
@@ -184,6 +201,16 @@ section {
 body.music-muted .music-toggle {
   background: rgba(74, 60, 36, 0.92);
   color: var(--cream);
+}
+
+body.music-muted .music-toggle-icon-on {
+  opacity: 0;
+  transform: scale(0.82);
+}
+
+body.music-muted .music-toggle-icon-off {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .invitation-prelude-card {
@@ -1422,9 +1449,8 @@ footer p {
   .music-toggle {
     top: 0.85rem;
     right: 0.85rem;
-    min-height: 2.6rem;
-    padding: 0.7rem 0.95rem;
-    font-size: 0.86rem;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
   .invitation-prelude-card {

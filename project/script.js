@@ -1,4 +1,9 @@
 const weddingDate = new Date("2026-04-15T15:30:00+05:30").getTime();
+const AUDIO_START_VOLUME = 0.05;
+const AUDIO_TARGET_VOLUME = 0.32;
+const AUDIO_FADE_IN_MS = 6000;
+const AUDIO_PLAY_WINDOW_MS = 30000;
+const AUDIO_FADE_OUT_MS = 5000;
 
 function initPrelude() {
   const body = document.body;
@@ -11,13 +16,101 @@ function initPrelude() {
     return;
   }
 
+  let fadeInIntervalId = null;
+  let fadeOutIntervalId = null;
+  let fadeOutTimeoutId = null;
+  let stopTimeoutId = null;
+
+  const clearAudioTimers = () => {
+    if (fadeInIntervalId) {
+      window.clearInterval(fadeInIntervalId);
+      fadeInIntervalId = null;
+    }
+
+    if (fadeOutIntervalId) {
+      window.clearInterval(fadeOutIntervalId);
+      fadeOutIntervalId = null;
+    }
+
+    if (fadeOutTimeoutId) {
+      window.clearTimeout(fadeOutTimeoutId);
+      fadeOutTimeoutId = null;
+    }
+
+    if (stopTimeoutId) {
+      window.clearTimeout(stopTimeoutId);
+      stopTimeoutId = null;
+    }
+  };
+
+  const fadeVolume = (targetVolume, duration, onComplete) => {
+    if (!backgroundSong) {
+      return;
+    }
+
+    if (duration <= 0) {
+      backgroundSong.volume = targetVolume;
+      if (onComplete) {
+        onComplete();
+      }
+      return;
+    }
+
+    const startVolume = backgroundSong.volume;
+    const startTime = Date.now();
+    const intervalId = window.setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      backgroundSong.volume = startVolume + (targetVolume - startVolume) * progress;
+
+      if (progress >= 1) {
+        window.clearInterval(intervalId);
+
+        if (fadeInIntervalId === intervalId) {
+          fadeInIntervalId = null;
+        }
+
+        if (fadeOutIntervalId === intervalId) {
+          fadeOutIntervalId = null;
+        }
+
+        if (onComplete) {
+          onComplete();
+        }
+      }
+    }, 120);
+
+    return intervalId;
+  };
+
+  const scheduleSongEnding = () => {
+    if (!backgroundSong) {
+      return;
+    }
+
+    fadeOutTimeoutId = window.setTimeout(() => {
+      fadeOutIntervalId = fadeVolume(0, AUDIO_FADE_OUT_MS, () => {
+        backgroundSong.pause();
+        backgroundSong.currentTime = 0;
+      });
+    }, AUDIO_PLAY_WINDOW_MS - AUDIO_FADE_OUT_MS);
+
+    stopTimeoutId = window.setTimeout(() => {
+      clearAudioTimers();
+      backgroundSong.volume = 0;
+      backgroundSong.pause();
+      backgroundSong.currentTime = 0;
+    }, AUDIO_PLAY_WINDOW_MS);
+  };
+
   const setMusicMuted = (muted) => {
     if (!backgroundSong || !musicToggle) {
       return;
     }
 
     backgroundSong.muted = muted;
-    musicToggle.textContent = muted ? "Unmute Music" : "Mute Music";
+    musicToggle.setAttribute("aria-label", muted ? "Unmute music" : "Mute music");
+    musicToggle.setAttribute("title", muted ? "Unmute music" : "Mute music");
     musicToggle.setAttribute("aria-pressed", String(!muted));
     body.classList.toggle("music-muted", muted);
   };
@@ -27,14 +120,38 @@ function initPrelude() {
       return;
     }
 
-    backgroundSong.volume = 0.45;
+    clearAudioTimers();
+    backgroundSong.currentTime = 0;
+    backgroundSong.volume = AUDIO_START_VOLUME;
 
     if (!backgroundSong.muted) {
       backgroundSong.play().catch(() => {
         // The placeholder file may not exist yet, or playback may be blocked.
+        clearAudioTimers();
       });
+
+      fadeInIntervalId = fadeVolume(AUDIO_TARGET_VOLUME, AUDIO_FADE_IN_MS);
+      scheduleSongEnding();
     }
   };
+
+  const stopBackgroundSong = () => {
+    if (!backgroundSong) {
+      return;
+    }
+
+    clearAudioTimers();
+    fadeOutIntervalId = fadeVolume(0, 350, () => {
+      backgroundSong.pause();
+      backgroundSong.currentTime = 0;
+      backgroundSong.volume = AUDIO_START_VOLUME;
+    });
+  };
+
+  backgroundSong?.addEventListener("ended", () => {
+    clearAudioTimers();
+    backgroundSong.volume = AUDIO_START_VOLUME;
+  });
 
   setMusicMuted(false);
 
@@ -43,8 +160,19 @@ function initPrelude() {
       const nextMutedState = !backgroundSong.muted;
       setMusicMuted(nextMutedState);
 
-      if (!nextMutedState) {
+      if (nextMutedState) {
+        stopBackgroundSong();
+      } else if (!body.classList.contains("has-prelude")) {
         playBackgroundSong();
+      } else {
+        backgroundSong.volume = AUDIO_START_VOLUME;
+        backgroundSong.play().catch(() => {
+          // The placeholder file may not exist yet, or playback may be blocked.
+          clearAudioTimers();
+        });
+
+        fadeInIntervalId = fadeVolume(AUDIO_TARGET_VOLUME, AUDIO_FADE_IN_MS);
+        scheduleSongEnding();
       }
     });
   }
