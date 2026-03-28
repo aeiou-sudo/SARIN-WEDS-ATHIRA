@@ -4,19 +4,35 @@ function initPrelude() {
   const body = document.body;
   const prelude = document.getElementById("invitationPrelude");
   const openButton = document.getElementById("openInvitation");
+  const backgroundSong = document.getElementById("backgroundSong");
 
   if (!body || !prelude || !openButton) {
     return;
   }
 
   const revealInvitation = () => {
-    prelude.classList.add("is-hidden");
-    body.classList.remove("has-prelude");
-    body.classList.add("page-revealed");
+    if (prelude.classList.contains("is-opening")) {
+      return;
+    }
+
+    prelude.classList.add("is-opening");
+
+    if (backgroundSong) {
+      backgroundSong.volume = 0.45;
+      backgroundSong.play().catch(() => {
+        // The placeholder file may not exist yet, or playback may be blocked.
+      });
+    }
+
+    window.setTimeout(() => {
+      prelude.classList.add("is-hidden");
+      body.classList.remove("has-prelude");
+      body.classList.add("page-revealed");
+    }, 1180);
 
     window.setTimeout(() => {
       prelude.setAttribute("aria-hidden", "true");
-    }, 850);
+    }, 1900);
   };
 
   openButton.addEventListener("click", revealInvitation);
