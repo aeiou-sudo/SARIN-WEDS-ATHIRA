@@ -95,6 +95,13 @@ footer p {
   font-family: "Great Vibes", cursive;
 }
 
+.event-malayalam,
+.detail-malayalam,
+.timeline-subtitle,
+.quote-malayalam {
+  font-family: "Noto Serif Malayalam", serif;
+}
+
 .container {
   width: min(calc(100% - 2rem), var(--container));
   margin: 0 auto;
@@ -145,6 +152,7 @@ section {
   position: relative;
   z-index: 1;
   width: min(100%, 44rem);
+  margin: 0 auto;
   padding: clamp(2rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
   text-align: center;
   background:
@@ -158,6 +166,7 @@ section {
 .invitation-envelope {
   position: relative;
   width: min(100%, 46rem);
+  margin: 0 auto;
   padding-top: 4.5rem;
   perspective: 1800px;
 }
@@ -334,6 +343,27 @@ section {
     linear-gradient(175deg, #faf5ed 0%, #f5efe2 30%, #f0e8d8 60%, #ede3d1 85%, #f5efe2 100%);
 }
 
+.hero-page-shell {
+  position: absolute;
+  inset: 1.5rem;
+  pointer-events: none;
+}
+
+.hero-page-border,
+.hero-page-fold {
+  position: absolute;
+  opacity: 0;
+}
+
+.hero-page {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 52rem);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 .hero::before {
   content: "";
   position: absolute;
@@ -424,8 +454,13 @@ section {
 .hero-content {
   position: relative;
   z-index: 1;
+  width: 100%;
   max-width: 720px;
+  margin: 0 auto;
   padding: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -534,6 +569,7 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
 }
 
 .couple-section {
+  width: 100%;
   margin: 1.6rem 0;
 }
 
@@ -553,7 +589,15 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
   color: var(--dark-brown);
 }
 
+.couple-address {
+  margin: 0.05rem 0 0.6rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  color: var(--dark-brown);
+}
+
 .event-details-inline {
+  width: 100%;
   margin: 1.5rem 0;
 }
 
@@ -577,6 +621,20 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
 .event-info {
   margin: 0.15rem 0;
   font-family: "Cormorant Garamond", serif;
+  font-size: 1rem;
+  color: var(--dark-brown);
+}
+
+.event-note,
+.detail-note,
+.timeline-note {
+  margin: 0.2rem 0 0.75rem;
+  font-size: 0.92rem;
+  color: var(--gold-dark);
+}
+
+.event-malayalam {
+  margin: 0.1rem 0 0.35rem;
   font-size: 1rem;
   color: var(--dark-brown);
 }
@@ -613,6 +671,15 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
     linear-gradient(180deg, #fff 0%, var(--parchment) 100%);
 }
 
+.invitation-section,
+.quotes-section,
+.timeline-section {
+  background:
+    radial-gradient(circle at top left, rgba(212, 175, 55, 0.05), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(212, 175, 55, 0.05), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(245, 239, 226, 0.95));
+}
+
 .message::before,
 .message::after {
   content: "";
@@ -639,6 +706,14 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
   letter-spacing: 0.08em;
   text-align: center;
   color: var(--dark);
+}
+
+.section-kicker {
+  margin: 0 0 0.4rem;
+  text-align: center;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
 }
 
 .message-text {
@@ -694,6 +769,125 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
   text-align: center;
 }
 
+.invitation-panel,
+.quote-card,
+.timeline-card {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.92) 0%, rgba(250, 245, 237, 0.82) 100%);
+  border: 1px solid rgba(197, 160, 40, 0.28);
+  box-shadow: var(--shadow-card);
+}
+
+.invitation-panel {
+  padding: 3rem 1.8rem;
+  text-align: center;
+}
+
+.formal-invitation-copy {
+  max-width: 38rem;
+  margin: 0 auto;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 2.3vw, 1.45rem);
+  line-height: 1.85;
+  color: var(--dark-brown);
+}
+
+.formal-invitation-copy p {
+  margin: 0.2rem 0;
+}
+
+.invitation-highlight {
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  color: var(--dark);
+}
+
+.quotes-grid,
+.timeline-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.quotes-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quote-card,
+.timeline-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.quote-text {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+  line-height: 1.7;
+  color: var(--dark);
+}
+
+.quote-ref {
+  margin: 0.8rem 0 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
+.quote-malayalam {
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--dark-brown);
+}
+
+.timeline-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.timeline-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.8rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(226, 204, 110, 0.22), rgba(197, 160, 40, 0.12));
+  color: var(--gold-dark);
+  font-size: 1.2rem;
+}
+
+.timeline-step {
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  font-size: 0.78rem;
+}
+
+.timeline-card h3 {
+  margin: 0.45rem 0 0.25rem;
+  font-size: 1.6rem;
+  color: var(--dark);
+}
+
+.timeline-subtitle {
+  margin: 0 0 0.35rem;
+  color: var(--dark-brown);
+}
+
+.timeline-date {
+  margin: 0.2rem 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  color: var(--dark);
+}
+
+.timeline-location {
+  margin: 0.2rem 0;
+  font-family: "Cormorant Garamond", serif;
+  color: var(--dark-brown);
+}
+
 .detail-card::before,
 .detail-card::after,
 .location-card::before,
@@ -736,6 +930,11 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--gold-dark);
+}
+
+.detail-malayalam {
+  margin: -0.25rem 0 0.65rem;
+  color: var(--dark-brown);
 }
 
 .detail-card p {
@@ -878,6 +1077,40 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
   border: 0;
 }
 
+.qr-card {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border-radius: 16px;
+  border: 1px dashed rgba(197, 160, 40, 0.45);
+  background: rgba(255, 251, 244, 0.72);
+  text-align: center;
+}
+
+.qr-label {
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--gold-dark);
+}
+
+.qr-placeholder {
+  display: grid;
+  place-items: center;
+  width: 86px;
+  height: 86px;
+  margin: 0 auto;
+  border: 1px solid rgba(197, 160, 40, 0.35);
+  background:
+    linear-gradient(45deg, rgba(197, 160, 40, 0.18) 25%, transparent 25%, transparent 75%, rgba(197, 160, 40, 0.18) 75%),
+    linear-gradient(45deg, rgba(197, 160, 40, 0.18) 25%, transparent 25%, transparent 75%, rgba(197, 160, 40, 0.18) 75%);
+  background-position: 0 0, 8px 8px;
+  background-size: 16px 16px;
+  color: var(--dark-brown);
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+}
+
 .footer-message {
   text-align: center;
 }
@@ -896,6 +1129,13 @@ body.page-revealed .reveal-sequence .reveal-item:nth-child(9) {
   margin: 0;
   font-size: clamp(1.9rem, 4vw, 2.5rem);
   color: var(--dark);
+}
+
+.contact-context {
+  margin: 0.4rem 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.05rem;
+  color: var(--dark-brown);
 }
 
 .contact-phone {
@@ -1118,7 +1358,9 @@ footer p {
 
   .details-grid,
   .location-grid,
-  .gallery-grid {
+  .gallery-grid,
+  .quotes-grid,
+  .timeline-list {
     grid-template-columns: 1fr;
   }
 
