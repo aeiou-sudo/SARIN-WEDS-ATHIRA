@@ -5,9 +5,48 @@ function initPrelude() {
   const prelude = document.getElementById("invitationPrelude");
   const openButton = document.getElementById("openInvitation");
   const backgroundSong = document.getElementById("backgroundSong");
+  const musicToggle = document.getElementById("musicToggle");
 
   if (!body || !prelude || !openButton) {
     return;
+  }
+
+  const setMusicMuted = (muted) => {
+    if (!backgroundSong || !musicToggle) {
+      return;
+    }
+
+    backgroundSong.muted = muted;
+    musicToggle.textContent = muted ? "Unmute Music" : "Mute Music";
+    musicToggle.setAttribute("aria-pressed", String(muted));
+    body.classList.toggle("music-muted", muted);
+  };
+
+  const playBackgroundSong = () => {
+    if (!backgroundSong) {
+      return;
+    }
+
+    backgroundSong.volume = 0.45;
+
+    if (!backgroundSong.muted) {
+      backgroundSong.play().catch(() => {
+        // The placeholder file may not exist yet, or playback may be blocked.
+      });
+    }
+  };
+
+  setMusicMuted(false);
+
+  if (musicToggle && backgroundSong) {
+    musicToggle.addEventListener("click", () => {
+      const nextMutedState = !backgroundSong.muted;
+      setMusicMuted(nextMutedState);
+
+      if (!nextMutedState) {
+        playBackgroundSong();
+      }
+    });
   }
 
   const revealInvitation = () => {
@@ -16,23 +55,20 @@ function initPrelude() {
     }
 
     prelude.classList.add("is-opening");
+    playBackgroundSong();
 
-    if (backgroundSong) {
-      backgroundSong.volume = 0.45;
-      backgroundSong.play().catch(() => {
-        // The placeholder file may not exist yet, or playback may be blocked.
-      });
-    }
+    window.setTimeout(() => {
+      body.classList.add("page-revealed");
+    }, 560);
 
     window.setTimeout(() => {
       prelude.classList.add("is-hidden");
       body.classList.remove("has-prelude");
-      body.classList.add("page-revealed");
-    }, 1180);
+    }, 1480);
 
     window.setTimeout(() => {
       prelude.setAttribute("aria-hidden", "true");
-    }, 1900);
+    }, 1980);
   };
 
   openButton.addEventListener("click", revealInvitation);
