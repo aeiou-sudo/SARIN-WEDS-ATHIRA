@@ -1,40 +1,80 @@
 const weddingDate = new Date("2026-04-15T15:30:00+05:30").getTime();
-const countdownElements = {
-  days: document.getElementById("days"),
-  hours: document.getElementById("hours"),
-  minutes: document.getElementById("minutes"),
-  seconds: document.getElementById("seconds"),
-};
 
-const experienceTrack = document.getElementById("experienceTrack");
-const scenes = Array.from(document.querySelectorAll(".scene"));
-const sceneCurrent = document.getElementById("sceneCurrent");
-const sceneTotal = document.getElementById("sceneTotal");
-let activeSceneIndex = 0;
-let transitionLock = false;
-let touchStartY = 0;
-let touchDeltaY = 0;
-let wheelDeltaBuffer = 0;
-let wheelResetTimeout;
+function initPrelude() {
+  const body = document.body;
+  const prelude = document.getElementById("invitationPrelude");
+  const openButton = document.getElementById("openInvitation");
+  const backgroundSong = document.getElementById("backgroundSong");
+
+  if (!body || !prelude || !openButton) {
+    return;
+  }
+
+  const revealInvitation = () => {
+    if (prelude.classList.contains("is-opening")) {
+      return;
+    }
+
+    prelude.classList.add("is-opening");
+
+    if (backgroundSong) {
+      backgroundSong.volume = 0.45;
+      backgroundSong.play().catch(() => {
+        // The placeholder file may not exist yet, or playback may be blocked.
+      });
+    }
+
+    window.setTimeout(() => {
+      prelude.classList.add("is-hidden");
+      body.classList.remove("has-prelude");
+      body.classList.add("page-revealed");
+    }, 1180);
+
+    window.setTimeout(() => {
+      prelude.setAttribute("aria-hidden", "true");
+    }, 1900);
+  };
+
+  openButton.addEventListener("click", revealInvitation);
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      body.classList.contains("has-prelude") &&
+      (event.key === "Enter" || event.key === " ")
+    ) {
+      event.preventDefault();
+      revealInvitation();
+    }
+  });
+}
 
 function padNumber(value) {
   return String(value).padStart(2, "0");
 }
 
 function updateCountdown() {
+  const daysEl = document.getElementById("cd-days");
+  const hoursEl = document.getElementById("cd-hours");
+  const minutesEl = document.getElementById("cd-minutes");
+  const secondsEl = document.getElementById("cd-seconds");
+
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+    return;
+  }
+
   const now = Date.now();
   const distance = Math.max(weddingDate - now, 0);
-
   const totalSeconds = Math.floor(distance / 1000);
+
   const days = Math.floor(totalSeconds / 86400);
   const hours = Math.floor((totalSeconds % 86400) / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  countdownElements.days.textContent = padNumber(days);
-  countdownElements.hours.textContent = padNumber(hours);
-  countdownElements.minutes.textContent = padNumber(minutes);
-  countdownElements.seconds.textContent = padNumber(seconds);
+  daysEl.textContent = padNumber(days);
+  hoursEl.textContent = padNumber(hours);
+  minutesEl.textContent = padNumber(minutes);
+  secondsEl.textContent = padNumber(seconds);
 
   if (distance === 0) {
     return;
@@ -42,146 +82,6 @@ function updateCountdown() {
 
   const drift = 1000 - (now % 1000);
   window.setTimeout(updateCountdown, drift);
-}
-
-function updateProgress() {
-  if (!sceneCurrent || !sceneTotal) {
-    return;
-  }
-
-  sceneCurrent.textContent = padNumber(activeSceneIndex + 1);
-  sceneTotal.textContent = padNumber(scenes.length);
-}
-
-function updateActiveScene() {
-  scenes.forEach((scene, index) => {
-    scene.classList.toggle("is-active", index === activeSceneIndex);
-  });
-}
-
-function setScene(nextIndex) {
-  if (
-    !experienceTrack ||
-    transitionLock ||
-    nextIndex === activeSceneIndex ||
-    nextIndex < 0 ||
-    nextIndex >= scenes.length
-  ) {
-    return;
-  }
-
-  transitionLock = true;
-  activeSceneIndex = nextIndex;
-  experienceTrack.style.transform = `translate3d(0, -${activeSceneIndex * 100}vh, 0)`;
-  updateActiveScene();
-  updateProgress();
-
-  window.setTimeout(() => {
-    transitionLock = false;
-  }, 1220);
-}
-
-function goToNextScene() {
-  setScene(activeSceneIndex + 1);
-}
-
-function goToPreviousScene() {
-  setScene(activeSceneIndex - 1);
-}
-
-function initSceneTransitions() {
-  if (!experienceTrack) {
-    return;
-  }
-
-  experienceTrack.style.transform = "translate3d(0, 0, 0)";
-  updateActiveScene();
-  updateProgress();
-
-  window.addEventListener(
-    "wheel",
-    (event) => {
-      if (document.body.classList.contains("lightbox-open")) {
-        return;
-      }
-
-      event.preventDefault();
-
-      if (transitionLock) {
-        return;
-      }
-
-      const normalizedDelta = Math.sign(event.deltaY) * Math.min(Math.abs(event.deltaY), 40);
-      wheelDeltaBuffer += normalizedDelta;
-
-      window.clearTimeout(wheelResetTimeout);
-      wheelResetTimeout = window.setTimeout(() => {
-        wheelDeltaBuffer = 0;
-      }, 140);
-
-      if (Math.abs(wheelDeltaBuffer) < 10) {
-        return;
-      }
-
-      if (wheelDeltaBuffer > 0) {
-        goToNextScene();
-      } else {
-        goToPreviousScene();
-      }
-
-      wheelDeltaBuffer = 0;
-    },
-    { passive: false }
-  );
-
-  window.addEventListener("keydown", (event) => {
-    if (document.body.classList.contains("lightbox-open")) {
-      return;
-    }
-
-    if (event.key === "ArrowDown" || event.key === "PageDown" || event.key === " ") {
-      event.preventDefault();
-      goToNextScene();
-    }
-
-    if (event.key === "ArrowUp" || event.key === "PageUp") {
-      event.preventDefault();
-      goToPreviousScene();
-    }
-  });
-
-  window.addEventListener(
-    "touchstart",
-    (event) => {
-      touchStartY = event.changedTouches[0].clientY;
-      touchDeltaY = 0;
-    },
-    { passive: true }
-  );
-
-  window.addEventListener(
-    "touchmove",
-    (event) => {
-      touchDeltaY = event.changedTouches[0].clientY - touchStartY;
-    },
-    { passive: true }
-  );
-
-  window.addEventListener(
-    "touchend",
-    () => {
-      if (transitionLock || Math.abs(touchDeltaY) < 42) {
-        return;
-      }
-
-      if (touchDeltaY < 0) {
-        goToNextScene();
-      } else {
-        goToPreviousScene();
-      }
-    },
-    { passive: true }
-  );
 }
 
 function initLightbox() {
@@ -230,6 +130,33 @@ function initLightbox() {
   });
 }
 
+function initScrollReveal() {
+  const sections = document.querySelectorAll(".reveal-on-scroll");
+
+  if (!sections.length || !("IntersectionObserver" in window)) {
+    sections.forEach((section) => section.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -8% 0px",
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+initPrelude();
 updateCountdown();
-initSceneTransitions();
 initLightbox();
+initScrollReveal();
