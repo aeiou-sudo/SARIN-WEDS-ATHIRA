@@ -354,7 +354,7 @@ body.music-muted .music-toggle-icon-off {
 
 .prelude-script {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(2rem, 6vw, 2.2rem);
   color: var(--dark);
   line-height: 1.05;
 }
