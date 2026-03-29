@@ -2,8 +2,8 @@ const weddingDate = new Date("2026-04-15T15:30:00+05:30").getTime();
 const AUDIO_START_VOLUME = 0.05;
 const AUDIO_TARGET_VOLUME = 0.32;
 const AUDIO_FADE_IN_MS = 6000;
-const AUDIO_PLAY_WINDOW_MS = 30000;
-const AUDIO_FADE_OUT_MS = 5000;
+const AUDIO_PLAY_WINDOW_MS = 45000;
+const AUDIO_FADE_OUT_MS = 7000;
 
 function initPrelude() {
   const body = document.body;
@@ -187,16 +187,16 @@ function initPrelude() {
 
     window.setTimeout(() => {
       body.classList.add("page-revealed");
-    }, 560);
+    }, 360);
 
     window.setTimeout(() => {
       prelude.classList.add("is-hidden");
       body.classList.remove("has-prelude");
-    }, 1480);
+    }, 1040);
 
     window.setTimeout(() => {
       prelude.setAttribute("aria-hidden", "true");
-    }, 1980);
+    }, 1360);
   };
 
   openButton.addEventListener("click", revealInvitation);
